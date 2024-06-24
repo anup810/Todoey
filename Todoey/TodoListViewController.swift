@@ -10,10 +10,16 @@ import UIKit
 class TodoListViewController: UITableViewController {
     var barColor = BarColor()
     var itemArray = ["Find Milk","Buy Eggos","Destory Demogorgon"]
+    let defaults = UserDefaults.standard
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         barColor.barAppearance(for: navigationController)
+        if let items = defaults.array(forKey: "ToDoListArray") as? [String]{
+            itemArray = items
+            
+        }
         
         
     }
@@ -29,8 +35,8 @@ class TodoListViewController: UITableViewController {
     }
     //MARK: - Tableview Delegate Methods.
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-        print(itemArray[indexPath.row])
+//print(indexPath.row)
+       // print(itemArray[indexPath.row])
         
         // tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark{
@@ -54,6 +60,7 @@ class TodoListViewController: UITableViewController {
         let alert = UIAlertController(title: "Add New Todoey Item", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             self.itemArray.append(textField.text!)
+            self.defaults.set(self.itemArray, forKey: "ToDoListArray")
             self.tableView.reloadData()
         }
         alert.addTextField { (alertTextField) in
