@@ -9,7 +9,7 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
     var barColor = BarColor()
-    var itemArray = ["Find Milk","Buy Eggos","Destory Demogorgon"]
+    var itemArray = ["Find Milk","Buy Eggos","Destory Demogorgon","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","E","Q"]
     let defaults = UserDefaults.standard
     
     
